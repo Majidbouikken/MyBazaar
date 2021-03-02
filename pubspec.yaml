@@ -44,6 +44,15 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  assets:
+    - assets/img/product0.png
+    - assets/img/product1.png
+    - assets/img/product2.png
+    - assets/img/product3.png
+    - assets/img/product4.png
+    - assets/img/product5.png
+    - assets/img/product6.png
+
   fonts:
     - family: Rubik
       fonts:

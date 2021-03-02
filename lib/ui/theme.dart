@@ -14,6 +14,34 @@ class ThemeChanger with ChangeNotifier {
   }
 
   static ThemeData lightTheme = ThemeData(
+    cardColor: ThemeColors.cardColor,
+    backgroundColor: ThemeColors.backgroundColor,
+    textTheme: TextTheme(
+        headline1: TextStyle(
+            fontFamily: 'Rubik',
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+            color: ThemeColors.textColor
+        ),
+      headline2: TextStyle(
+          fontFamily: 'Rubik',
+          fontWeight: FontWeight.w500,
+          fontSize: 22,
+          color: ThemeColors.textColor
+      ),
+      headline3: TextStyle(
+          fontFamily: 'Rubik',
+          fontWeight: FontWeight.w400,
+          fontSize: 12,
+          color: ThemeColors.textColor
+      ),
+      headline4: TextStyle(
+          fontFamily: 'Rubik',
+          fontWeight: FontWeight.w400,
+          fontSize: 16,
+          color: ThemeColors.textColor
+      ),
+    ),
     brightness: Brightness.light,
   );
 
