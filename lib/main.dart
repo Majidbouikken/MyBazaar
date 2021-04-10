@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_bazaar/ui/pages/HomePage.dart';
+import 'package:my_bazaar/ui/pages/LoginPage.dart';
+import 'package:my_bazaar/ui/pages/ProductPage.dart';
 import 'ui/components/Deals.dart';
 import 'ui/components/SearchBar.dart';
 import 'ui/mybazaar_icons.dart';
@@ -13,23 +16,28 @@ class MyBazaarApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeChanger.lightTheme,
-      home: HomePage(),
+      home: LoginPage(),
+      routes: {
+        "/mainScreen": (context) => MainScreen(),
+      },
       debugShowCheckedModeBanner: false,
     );
   }
 }
 
-class HomePage extends StatefulWidget {
+class MainScreen extends StatefulWidget {
   @override
-  _HomePageState createState() => _HomePageState();
+  _MainScreenState createState() => _MainScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _MainScreenState extends State<MainScreen> {
   int i;
+  bool page;
 
   @override
   void initState() {
     i = 0;
+    page = false;
     super.initState();
   }
 
@@ -44,6 +52,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               // TabView
               Container(
+                height: MediaQuery.of(context).size.height-MediaQuery.of(context).padding.top-44-16,
                 decoration: BoxDecoration(
                     color: Theme.of(context).backgroundColor,
                     borderRadius:
@@ -51,38 +60,13 @@ class _HomePageState extends State<HomePage> {
                 child: (() {
                   switch (i) {
                     case 0:
-                      return Container(
-                        child: Column(
-                          children: [
-                            // title
-                            Container(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    MyBazaarIcons.logo,
-                                    color: ThemeColors.textColor,
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  Text(
-                                    'MyBazaar',
-                                    style:
-                                        Theme.of(context).textTheme.headline1,
-                                  )
-                                ],
-                              ),
-                            ),
-                            // search
-                            SearchBar(),
-                            // deals
-                            Deals(),
-
-                            // products
-                          ],
-                        ),
-                      );
+                      return GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            page=!page;
+                          });
+                        },
+                          child: page? ProductPage() : HomePage());
                     case 1:
                       return Container(
                         color: Colors.white,
@@ -108,46 +92,57 @@ class _HomePageState extends State<HomePage> {
               ),
 
               // TabButtons
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                      flex: (i == 0) ? 2 : 1,
-                      child: FlatButton(
-                          color: (i == 0) ? Colors.white: ThemeColors.primaryColor,
-                          onPressed: () => setState(() => i = 0),
-                          child: Icon(
-                            MyBazaarIcons.home,
-                            color: (i == 0) ? ThemeColors.primaryColor: ThemeColors.backgroundColor,
-                          ))),
-                  Expanded(
-                      flex: (i == 1) ? 2 : 1,
-                      child: FlatButton(
-                          color: (i == 1) ? Colors.white: ThemeColors.primaryColor,
-                          onPressed: () => setState(() => i = 1),
-                          child: Icon(
-                            MyBazaarIcons.compass,
-                            color: (i == 1) ? ThemeColors.primaryColor: ThemeColors.backgroundColor,
-                          ))),
-                  Expanded(
-                      flex: (i == 2) ? 2 : 1,
-                      child: FlatButton(
-                          color: (i == 2) ? Colors.white: ThemeColors.primaryColor,
-                          onPressed: () => setState(() => i = 2),
-                          child: Icon(
-                            MyBazaarIcons.cart,
-                            color: (i == 2) ? ThemeColors.primaryColor: ThemeColors.backgroundColor,
-                          ))),
-                  Expanded(
-                      flex: (i == 3) ? 2 : 1,
-                      child: FlatButton(
-                          color: (i == 3) ? Colors.white: ThemeColors.primaryColor,
-                          onPressed: () => setState(() => i = 3),
-                          child: Icon(
-                            MyBazaarIcons.person,
-                            color: (i == 3) ? ThemeColors.primaryColor: ThemeColors.backgroundColor,
-                          ))),
-                ],
+              Container(
+                height: 44,
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                        flex: (i == 0) ? 2 : 1,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: (i == 0) ? Colors.white: ThemeColors.primaryColor,
+                          ),
+                            onPressed: () => setState(() => i = 0),
+                            child: Icon(
+                              MyBazaarIcons.home,
+                              color: (i == 0) ? ThemeColors.primaryColor: ThemeColors.backgroundColor,
+                            ))),
+                    Expanded(
+                        flex: (i == 1) ? 2 : 1,
+                        child: TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: (i == 1) ? Colors.white: ThemeColors.primaryColor,
+                            ),
+                            onPressed: () => setState(() => i = 1),
+                            child: Icon(
+                              MyBazaarIcons.compass,
+                              color: (i == 1) ? ThemeColors.primaryColor: ThemeColors.backgroundColor,
+                            ))),
+                    Expanded(
+                        flex: (i == 2) ? 2 : 1,
+                        child: TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: (i == 2) ? Colors.white: ThemeColors.primaryColor,
+                            ),
+                            onPressed: () => setState(() => i = 2),
+                            child: Icon(
+                              MyBazaarIcons.cart,
+                              color: (i == 2) ? ThemeColors.primaryColor: ThemeColors.backgroundColor,
+                            ))),
+                    Expanded(
+                        flex: (i == 3) ? 2 : 1,
+                        child: TextButton(
+                            style: TextButton.styleFrom(
+                              backgroundColor: (i == 3) ? Colors.white: ThemeColors.primaryColor,
+                            ),
+                            onPressed: () => setState(() => i = 3),
+                            child: Icon(
+                              MyBazaarIcons.person,
+                              color: (i == 3) ? ThemeColors.primaryColor: ThemeColors.backgroundColor,
+                            ))),
+                  ],
+                ),
               )
             ],
           ),

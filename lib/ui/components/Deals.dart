@@ -16,7 +16,7 @@ class _DealsState extends State<Deals> {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 16),
       width: MediaQuery.of(context).size.width - 16,
-      height: MediaQuery.of(context).size.height - 184,
+      height: (MediaQuery.of(context).size.height-MediaQuery.of(context).padding.top) - 180,
       child: ListView(
         physics: BouncingScrollPhysics(),
         children: [
@@ -61,6 +61,25 @@ class _DealsState extends State<Deals> {
                 }),
           ),
           DashedDivider(),
+          Padding(
+            padding: EdgeInsets.only(top: 16, left: 16, right: 16),
+            child: Row(
+              children: [
+                Text(
+                  "All products",
+                  style: Theme.of(context).textTheme.headline2,
+                ),
+                Spacer(),
+                Text(
+                  "See all",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline3
+                      .copyWith(color: Color(0xFFAFB4BA)),
+                )
+              ],
+            ),
+          ),
           Container(
             child: GridView.count(
               crossAxisCount: 3,
