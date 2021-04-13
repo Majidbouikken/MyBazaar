@@ -1,12 +1,7 @@
+import 'package:animated_navigation_bar/animatedNavBar.dart';
 import 'package:flutter/material.dart';
-import 'package:my_bazaar/ui/components/AnimatedNavBar.dart';
-import 'package:my_bazaar/ui/components/AnimatedNavBarPage.dart';
 import 'package:my_bazaar/ui/pages/HomePage.dart';
-import 'package:my_bazaar/ui/pages/LoginPage.dart';
 import 'package:my_bazaar/ui/pages/ProductPage.dart';
-import 'ui/components/Deals.dart';
-import 'ui/components/SearchBar.dart';
-import 'ui/mybazaar_icons.dart';
 import 'ui/theme.dart';
 
 void main() {
@@ -49,6 +44,7 @@ class _MainScreenState extends State<MainScreen> {
       backgroundColor: Colors.blue,
       body: SafeArea(
         child: AnimatedNavBar(
+          padding: 8,
           color: Colors.white,
           iconColor: Color(0xFF0D1C2E),
           inactiveIconColor: Color(0xFF233B90),
@@ -67,6 +63,15 @@ class _MainScreenState extends State<MainScreen> {
               icon: Icons.map,
               inactiveIcon: Icons.map_outlined,
               pageContent: ProductPage(),
+            ),
+            AnimatedNavBarPage(
+              title: "cart",
+              icon: Icons.shopping_cart,
+              pageContent: Container(
+                height: 80,
+                width: 80,
+                color: Colors.greenAccent,
+              ),
             ),
             AnimatedNavBarPage(
               title: "cart",

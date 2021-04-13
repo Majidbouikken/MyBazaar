@@ -16,7 +16,7 @@ class _DealsState extends State<Deals> {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 16),
       width: MediaQuery.of(context).size.width - 16,
-      height: (MediaQuery.of(context).size.height-MediaQuery.of(context).padding.top) - 180,
+      height: (MediaQuery.of(context).size.height-MediaQuery.of(context).padding.top) - 184,
       child: ListView(
         physics: BouncingScrollPhysics(),
         children: [
